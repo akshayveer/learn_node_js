@@ -1,15 +1,22 @@
 console.log('staring app')
 
 const fs = require('fs');
-const os = require('os');
+const _ = require('lodash');
+
 const notes = require('./notes.js');
 
-var user = os.userInfo();
-fs.appendFile('message.txt', `Hello ${user.username}!`, function (err) {
-	if (err) {
-		console.log(err);
-	}
-});
+var command = process.argv[2];
+console.log(command);
 
-var res = notes.addNotes();
-console.log(notes.add(1, 2));
+if (command ===  'add') {
+	console.log('Adding new note');
+} else if (command === 'list') {
+	console.log('Listing all notes');
+} else if (command === 'read') {
+	console.log('Fetching note');
+} else if(command === 'delete') {
+	console.log('Deleting note');
+} else {
+	console.log('command not recongnized');
+}
+
