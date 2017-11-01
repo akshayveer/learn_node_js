@@ -10,7 +10,12 @@ var argv = yargs.argv;
 var command = argv._[0];
 
 if (command ===  'add') {
-	notes.addNote(argv.title, argv.body)
+	var note = notes.addNote(argv.title, argv.body);
+	if (note == undefined) {
+		console.log('Duplicate title');
+	} else {
+		console.log('Note added')
+	}
 } else if (command === 'list') {
 	notes.listNotes();
 } else if (command === 'read') {
