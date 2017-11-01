@@ -1,5 +1,3 @@
-console.log('staring app')
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
@@ -17,7 +15,8 @@ if (command ===  'add') {
 		console.log('Note added')
 	}
 } else if (command === 'list') {
-	notes.listNotes();
+	var allNotes = notes.listNotes();
+	allNotes.forEach((note) => console.log(note));
 } else if (command === 'read') {
 	var note = notes.readNote(argv.title);
 	if (note) {

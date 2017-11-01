@@ -1,4 +1,3 @@
-console.log('starting notes.js')
 const fs = require('fs');
 
 var readNotesFromFs = () => {
@@ -27,7 +26,8 @@ var addNote = (title, body) => {
 };
 
 var listNotes = () => {
-	console.log("Listing notes");
+	var notes = readNotesFromFs();
+	return notes;
 };
 
 var readNote = (title) => {
