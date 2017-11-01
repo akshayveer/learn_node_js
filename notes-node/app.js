@@ -19,7 +19,12 @@ if (command ===  'add') {
 } else if (command === 'list') {
 	notes.listNotes();
 } else if (command === 'read') {
-	notes.readNote(argv.title);
+	var note = notes.readNote(argv.title);
+	if (note) {
+		console.log('Note found');
+	} else {
+		console.log('Note not found');
+	}
 } else if(command === 'delete') {
 	var msg = notes.deleteNote(argv.title);
 	console.log(msg);

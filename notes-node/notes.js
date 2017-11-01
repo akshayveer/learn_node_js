@@ -31,14 +31,16 @@ var listNotes = () => {
 };
 
 var readNote = (title) => {
-	console.log(`Reading notes having title ${title}`);
+	var notes = readNotesFromFs();
+	var note = notes.filter((note) => note.title === title);
+	return note[0];
 }
 
 var deleteNote = (title) => {
 	var notes = readNotesFromFs();
 	var otherNotes = notes.filter((note) => note.title !== title);
 	var search = notes.filter((note) => note.title === title);
-	
+
 	saveNotesToFs(otherNotes);
 	if (search.length == 0) {
 		return 'Not present'
