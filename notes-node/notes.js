@@ -35,7 +35,16 @@ var readNote = (title) => {
 }
 
 var deleteNote = (title) => {
-	console.log(`Deleting note having title ${title}`)
+	var notes = readNotesFromFs();
+	var otherNotes = notes.filter((note) => note.title !== title);
+	var search = notes.filter((note) => note.title === title);
+	
+	saveNotesToFs(otherNotes);
+	if (search.length == 0) {
+		return 'Not present'
+	} else {
+		return 'delete sucess!!'
+	}
 }
 
 module.exports = {
