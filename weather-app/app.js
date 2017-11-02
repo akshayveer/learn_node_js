@@ -4,5 +4,10 @@ request({
 	url : 'https://maps.googleapis.com/maps/api/geocode/json?address=2197%20west%2013th%20avenue,%20Vancouver',
 	json : true
 }, (error, response, body) => {
-	console.log(JSON.stringify(body, undefined, 2));
+	if (error) {
+		console.log(error);
+	}
+	console.log(body.results[0].formatted_address);
+	var location = body.results[0].geometry.location;
+	console.log(`Latitude : ${location.lat}, Longitude : ${location.lng}`)
 });
