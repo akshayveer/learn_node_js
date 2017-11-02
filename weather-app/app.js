@@ -1,7 +1,26 @@
 const request = require('request');
+const yargs = require('yargs');
+
+
+var args = yargs
+	.options({
+		a : {
+			demand: true,
+			alias: 'address',
+			description: 'Address to fetech weather',
+			string: true
+		}
+	})
+	.help()
+	.argv
+
+var address = args.a;
+var encodedURI = encodeURIComponent(address);
+
+
 
 request({
-	url : 'https://maps.googleapis.com/maps/api/geocode/json?address=2197%20west%2013th%20avenue,%20Vancouver',
+	url : `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedURI}`,
 	json : true
 }, (error, response, body) => {
 	if (error) {
