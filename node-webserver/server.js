@@ -1,5 +1,6 @@
 const express = require('express')
 const hbs = require('hbs')
+const fs = require('fs')
 
 var app = express();
 
@@ -14,6 +15,22 @@ hbs.registerHelper('getCurrentYear', () => {
 hbs.registerHelper('screamIt', (text) => {
 	return text.toUpperCase();
 });
+
+app.use((req, res, next) => {
+	var now = new Date().toString();
+	var log = `Current request at ${now} : ${req.method} : ${req.url}`;
+	fs.appendFile('server.log', log + '\n', (err) => {
+		if (err) {
+			console.log('Unable to append to log');
+		}
+	});
+	console.log(log);
+	next();
+});
+
+// app.use((req, res, next) => {
+// 	res.render('maintainence.hbs');
+// });
 
 app.get('/', (req, res) => {
 	// res.send('Hello from Akshay');
