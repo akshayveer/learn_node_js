@@ -10,6 +10,6 @@ it('should add two number', () => {
 it('should square a number', () => {
 	var res = utils.square(9);
 	if (res != 81) {
-		throw new Error(`expected 81 but got ${res}`);
+		throw new Error(`expected 81 but got ${res}`); 
 	}
 })
