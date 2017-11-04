@@ -2,6 +2,8 @@ const express = require('express')
 
 var app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (req, res) => {
 	// res.send('Hello from Akshay');
 	res.send({
@@ -14,4 +16,4 @@ app.get('/about', (req, res) => {
 	res.send('About page');
 })
 
-app.listen(3000);
+app.listen(3000, () => console.log('Server is up and running'));
